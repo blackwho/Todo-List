@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/complete_switch_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Completed"
+            android:textSize="18sp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+    <android.support.v7.widget.SwitchCompat
+            android:id="@+id/complete_status_switch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView android:layout_width="wrap_content"
+              android:id="@+id/task_title_tv"
+              android:layout_height="wrap_content"
+              app:layout_constraintStart_toStartOf="parent"
+              android:layout_marginStart="4dp"
+              android:text="Title"
+              android:textSize="18sp"
+              android:textColor="@color/colorBlack"
+              android:layout_marginTop="8dp"
+              app:layout_constraintTop_toBottomOf="@+id/complete_switch_tv"/>
+    <EditText
+            android:id="@+id/add_title_ev"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ECEFF1"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="4dp"
+            android:textSize="12sp" android:hint="Please add task title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/task_title_tv"/>
+
+    <TextView
+            android:id="@+id/add_comments_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="8dp"
+            android:text="Add Comment"
+            android:textColor="@color/colorBlack"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_title_ev"/>
+    <EditText
+            android:id="@+id/add_comment_ev"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ECEFF1"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="4dp"
+            android:textSize="12sp"
+            android:hint="Please add your comment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_comments_tv"/>
+
+    <Button
+            android:id="@+id/add_comment_button"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:text="ADD"
+    app:layout_constraintTop_toBottomOf="@+id/add_comment_ev"
+    app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+            android:id="@+id/comments_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Comments"
+            android:layout_marginStart="4dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorBlack"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_comment_button"/>
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/comments_rv"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            app:layout_constraintTop_toBottomOf="@+id/comments_tv"
+            app:layout_constraintStart_toStartOf="parent">
+
+    </android.support.v7.widget.RecyclerView>
+    <TextView
+            android:id="@+id/empty_comments_view"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:gravity="center"
+            android:visibility="gone"
+            android:background="#ECEFF1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/comments_tv"
+            android:text="No comments"/>
+
+    <Button
+            android:id="@+id/save_data_button"
+            android:layout_width="wrap_content"
+            android:text="Save"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/comments_rv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>
