@@ -8,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.example.appjo.todolist.Adapters.TasksAdapter
 import com.example.appjo.todolist.Models.Task
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private var emptyTaskTextView: TextView? = null
     private val toDoItemList: MutableList<Task> = mutableListOf()
     private var itemListener: ValueEventListener? = null
+    private var progressBar: ProgressBar? = null
     lateinit var tasksAdapter: TasksAdapter
     lateinit var mDatabase: DatabaseReference
 
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mDatabase = FirebaseDatabase.getInstance().reference
         addTaskFloatButton = findViewById(R.id.add_task_fab_button)
+        progressBar = findViewById(R.id.progress_bar)
         emptyTaskTextView = findViewById(R.id.empty_task_text_view)
         tasksRecyclerView = findViewById(R.id.recyclerViewTasks)
         tasksRecyclerView!!.setHasFixedSize(true)
@@ -39,6 +42,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+        progressBar!!.visibility = View.VISIBLE
         mDatabase.orderByKey().addListenerForSingleValueEvent(itemListener!!)
     }
 
@@ -56,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onDataChange(dataSnapshot: DataSnapshot) {
+                progressBar!!.visibility = View.GONE
                 toDoItemList.clear()
                 dataSnapshot.children.mapNotNullTo(toDoItemList){
                     it.getValue<Task>(Task::class.java)

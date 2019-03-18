@@ -89,8 +89,8 @@ class TaskActivity: AppCompatActivity() {
         if (isDailyReminder){
             val calender = Calendar.getInstance()
             calender.timeInMillis = System.currentTimeMillis()
-            calender.set(Calendar.HOUR_OF_DAY, 20)
-            calender.set(Calendar.MINUTE, 22)
+            calender.set(Calendar.HOUR_OF_DAY, 22)
+            calender.set(Calendar.MINUTE, 10)
             calender.set(Calendar.SECOND, 1)
             if (calender.before(Calendar.getInstance())) {
                 calender.add(Calendar.DATE, 1);
