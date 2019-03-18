@@ -31,6 +31,7 @@ class TasksAdapter(var mContext: Context?, var tasksList: List<Task>): RecyclerV
                 intent.putExtra("objectId", tasksList[position].objectId)
                 intent.putExtra("title", tasksList[position].title)
                 intent.putExtra("done", tasksList[position].done)
+                intent.putExtra("requestCode", tasksList[position].requestCode)
                 val arrayCommentsList: ArrayList<String> = ArrayList()
                 try {
                     for (i in 0 until tasksList[position].comments!!.size){

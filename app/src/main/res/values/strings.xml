@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TodoList</string>
+    <string name="daily_reminder_shared_pref">daily_reminder_key</string>
 </resources>

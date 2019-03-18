@@ -12,7 +12,6 @@ import android.widget.TextView
 import com.example.appjo.todolist.Adapters.TasksAdapter
 import com.example.appjo.todolist.Models.Task
 import com.google.firebase.database.*
-import java.net.InterfaceAddress
 
 class MainActivity : AppCompatActivity() {
     private var tasksRecyclerView: RecyclerView? = null

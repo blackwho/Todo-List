@@ -10,4 +10,5 @@ class TodoItem {
     var title: String? = null
     var done: Boolean? = false
     var comments: List<String>? = null
+    var requestCode: Int? = 0
 }
