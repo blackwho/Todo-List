@@ -27,10 +27,9 @@ class CommentsAdapter(mContext: Context?, var commentsList: List<String>): Recyc
     }
 
     public fun setCommentList(data: List<String>){
-        if (data != null){
-            commentsList = data
-            notifyDataSetChanged()
-        }
+        commentsList = data
+        notifyDataSetChanged()
+
     }
 
 

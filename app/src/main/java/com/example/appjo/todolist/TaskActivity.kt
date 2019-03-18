@@ -36,7 +36,7 @@ class TaskActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task)
-        if (intent != null){
+        if (intent.extras != null){
             objectId = intent.getStringExtra("objectId")
             title = intent.getStringExtra("title")
             isComplete = intent.getBooleanExtra("done", false)
@@ -54,6 +54,7 @@ class TaskActivity: AppCompatActivity() {
         val layoutManager = LinearLayoutManager(this@TaskActivity, LinearLayoutManager.VERTICAL, false)
         commentRecyclerView!!.layoutManager = layoutManager
         commentRecyclerView!!.adapter = commentsAdapter
+        recyclerViewOrEmptyView()
         mDatabase = FirebaseDatabase.getInstance().reference
         setViews()
         setListeners()
@@ -64,16 +65,20 @@ class TaskActivity: AppCompatActivity() {
         finish()
     }
 
-    private fun setViews(){
-        completeStatusSwitch!!.setChecked(isComplete)
-        if (!title.isNullOrEmpty()){
-            titleEditText!!.setText(title)
-        }
+    private fun recyclerViewOrEmptyView(){
         if (commentsList.isNullOrEmpty()){
             showEmptyText()
         }else{
             showRecyclerView()
         }
+    }
+
+    private fun setViews(){
+        completeStatusSwitch!!.setChecked(isComplete)
+        if (!title.isNullOrEmpty()){
+            titleEditText!!.setText(title)
+        }
+        recyclerViewOrEmptyView()
     }
 
     private fun showEmptyText(){
@@ -101,6 +106,7 @@ class TaskActivity: AppCompatActivity() {
                     commentsList.add(addCommentEditText!!.text.toString())
                     addCommentEditText!!.text.clear()
                     commentsAdapter!!.setCommentList(commentsList)
+                    recyclerViewOrEmptyView()
                 }
             }
         })
@@ -120,6 +126,7 @@ class TaskActivity: AppCompatActivity() {
                     newItem!!.setValue(todoItem)
                     titleEditText!!.text.clear()
                     commentsList.clear()
+                    commentsAdapter!!.setCommentList(commentsList)
                     Toast.makeText(this@TaskActivity, "Task uploaded", Toast.LENGTH_LONG).show()
                 }else if (!objectId.isNullOrEmpty()){
                     val itemReference = mDatabase
@@ -133,9 +140,9 @@ class TaskActivity: AppCompatActivity() {
                         val map = mutableMapOf<String, Any>()
                         map[objectId] = todoItem
                         itemReference.updateChildren(map)
+                        Toast.makeText(this@TaskActivity, "Task successfully updated", Toast.LENGTH_LONG).show()
                     }else{
                         Toast.makeText(this@TaskActivity, "Please set a title", Toast.LENGTH_LONG).show()
-
                     }
 
                 }else{
